@@ -9,7 +9,7 @@
 <body>
   <!-- Música de fondo -->
   <audio id="bg-music" autoplay loop>
-    <source src="audiox.mp4" type="audio/mp4">
+    <source src="audiox.mp3" type="audio/mpeg">
     Tu navegador no soporta audio.
   </audio>
 
@@ -26,7 +26,7 @@
       </a>
 
       <!-- Botón Google Maps -->
-      <a href="https://www.google.com/maps/place/-14.813315709289265, -64.90016532587093" target="_blank" class="btn">
+      <a href="https://www.google.com/maps/place/-14.813315709289265,-64.90016532587093" target="_blank" class="btn">
         📍 Ver Ubicación   
       </a>
 
@@ -41,6 +41,13 @@
     const music = document.getElementById("bg-music");
     const muteBtn = document.getElementById("muteBtn");
 
+    // Intentar reproducir apenas cargue
+    window.addEventListener("load", () => {
+      music.play().catch(() => {
+        console.log("El navegador bloqueó el autoplay, el usuario debe interactuar.");
+      });
+    });
+
     muteBtn.addEventListener("click", () => {
       if (music.muted) {
         music.muted = false;
@@ -53,4 +60,6 @@
   </script>
 </body>
 </html>
+
+
 
