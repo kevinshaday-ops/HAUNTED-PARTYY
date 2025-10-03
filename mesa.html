@@ -13,9 +13,9 @@
   </style>
 </head>
 <body>
-  <!-- Música de fondo (opcional, puede ser la misma o no) -->
+  <!-- Música de fondo -->
   <audio id="bg-music" autoplay loop>
-    <source src="audiox.mp4" type="audio/mp4">
+    <source src="audiox.mp3" type="audio/mpeg">
     Tu navegador no soporta audio.
   </audio>
 
@@ -39,6 +39,13 @@
     const music = document.getElementById("bg-music");
     const muteBtn = document.getElementById("muteBtn");
 
+    // Intentar reproducir al cargar
+    window.addEventListener("load", () => {
+      music.play().catch(() => {
+        console.log("Autoplay bloqueado, se requiere interacción del usuario.");
+      });
+    });
+
     muteBtn.addEventListener("click", () => {
       music.muted = !music.muted;
       muteBtn.textContent = music.muted ? "🔇" : "🔊";
@@ -46,3 +53,6 @@
   </script>
 </body>
 </html>
+
+
+
